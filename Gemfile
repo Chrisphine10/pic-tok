@@ -31,6 +31,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.7'
 gem 'haml', '~> 5.1'
 gem 'simple_form', '~> 5.0'
+gem 'acts_as_votable', '~> 0.12.1'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

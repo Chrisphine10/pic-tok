@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :find_post, only: %i[show edit update destroy]
+  before_action :find_post, only: %i[show edit update destroy upvote downvote]
   before_action :authenticate_user!, except: %i[index show]
 
   def index
@@ -34,6 +34,15 @@ class PostsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def upvote
+	@post.upvote_by current_user
+	redirect_back fallback_location: root_path
+  end
+  def downvote
+	@post.downvote_by current_user
+	redirect_back fallback_location: root_path
   end
 
   def destroy
