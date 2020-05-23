@@ -1,9 +1,18 @@
 %h1= @post.title
+%img= image_tag @post.image, alt: '', height: '300', width: 'auto', class: ''
 %p= @post.link
 %p= @post.description
 %p= @post.user.name
 //%p= @post.user.encrypted_password
 
+#comment
+  %h2.comment_count= pluralize(@post.comments.count, "Comment")
+  - @comments.each do |comment|
+    .comment
+      %p.username= comment.user.name
+      %p.content= comment.content
+      
+  = render 'comments/form'
 = link_to "Edit", edit_post_path
 = link_to "Destroy", post_path, method: :delete, data: {confirm: "Are you sure?"}
 = link_to "Home", root_path
