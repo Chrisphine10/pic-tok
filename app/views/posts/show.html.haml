@@ -1,6 +1,8 @@
 %h1= @post.title
 %p= @post.link
 %p= @post.description
+%p= @post.user.name
+//%p= @post.user.encrypted_password
 
 = link_to "Edit", edit_post_path
 = link_to "Destroy", post_path, method: :delete, data: {confirm: "Are you sure?"}
