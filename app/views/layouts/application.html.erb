@@ -2,16 +2,58 @@
 <html>
   <head>
     <title>Pictok</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital@1&family=Roboto+Condensed&display=swap" rel="stylesheet">
   </head>
-
+  <style media="screen">
+    body {
+      font-family: 'DM Mono', monospace;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+    .nav-stay {
+      position: fixed;
+      /* Set the navbar to fixed position */
+    }
+  </style>
   <body>
-   <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+    <div class="shadow-lg p-1 bg-white navbar-static-top ">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a href="/posts">
+          <i><%= image_tag("", class: "logo", alt: "Logo", style: "width: 50px;") %></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        
+        <%= link_to "Add a pic", new_post_path, class: 'mr-lg-5 mb-2 btn btn-outline-secondary' %>
+        <% if current_user %>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'ml-lg-5 mb-2 btn btn-outline-secondary' %>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path, class: 'ml-lg-1 mb-2 btn btn-outline-secondary' %>
+          <%= link_to "Sign Up", new_user_registration_path, class: 'ml-lg-1 mb-2 btn btn-outline-secondary' %>
+        <% end %>
+      </div>
+    </nav>
+
+  </div>
+  <div class="yield" style="padding: 0px;">
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+	<%= yield %>
+  </div>
+</body>
 </html>

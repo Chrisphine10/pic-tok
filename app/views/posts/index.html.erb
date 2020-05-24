@@ -1,0 +1,16 @@
+<% if current_user %>
+<p> Hello
+<%= current_user.name %>
+ </p>
+<% end %>
+<% @posts.each do |post|%>
+<%= link_to image_tag(post.image, height: '300', width: 'auto') %>
+<h2>
+<%= link_to post.title, post %>
+</h2>
+
+<p><%= post.comments.count %> 
+ Comments </p>
+<p> <%= post.get_likes.size%>
+Likes </p>
+<% end %>

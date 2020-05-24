@@ -37,12 +37,13 @@ class PostsController < ApplicationController
   end
 
   def upvote
-	@post.upvote_by current_user
-	redirect_back fallback_location: root_path
+    @post.upvote_by current_user
+    redirect_back fallback_location: root_path
   end
+
   def downvote
-	@post.downvote_by current_user
-	redirect_back fallback_location: root_path
+    @post.downvote_by current_user
+    redirect_back fallback_location: root_path
   end
 
   def destroy
